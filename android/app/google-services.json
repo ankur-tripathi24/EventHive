@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "213222081592",
+    "project_id": "eventhive-47b68",
+    "storage_bucket": "eventhive-47b68.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:213222081592:android:d68b249f6880b9fa7a92cd",
+        "android_client_info": {
+          "package_name": "com.example.eventhive"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "213222081592-j9gspd6jddr6s9mn7qmqfgqhaom85tld.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnBJT2ga-kCwFz_c9YpgId5x9flN1rFMI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "213222081592-j9gspd6jddr6s9mn7qmqfgqhaom85tld.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
