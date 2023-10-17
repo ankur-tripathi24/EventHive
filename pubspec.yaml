@@ -2,7 +2,7 @@ name: eventhive
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -14,12 +14,13 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.19.2 <3.0.0'
+  sdk: ">=2.19.2 <3.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -30,7 +31,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  firebase_core: ^2.14.0
+  firebase_core: ^2.17.0
   firebase_analytics: ^10.4.3
   firebase_auth: ^4.6.3
   cloud_firestore: ^4.8.2
@@ -41,6 +42,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^5.1.0
   google_sign_in: ^6.1.4
+  flutter_swiper_view: ^1.1.8
+  video_player: ^2.7.2
 
 dev_dependencies:
   flutter_test:
@@ -58,7 +61,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -69,6 +71,8 @@ flutter:
     - assets/login.png
     - assets/register.png
     - assets/signin.png
+    - assets/Eventhive.mp4
+    - assets/Eventhive.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

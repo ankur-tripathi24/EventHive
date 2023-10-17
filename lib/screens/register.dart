@@ -1,4 +1,4 @@
-import 'package:eventhive/service/auth.dart';
+import 'package:eventhive/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,8 +12,6 @@ class MyRegister extends StatefulWidget {
 }
 
 class _MyRegisterState extends State<MyRegister> {
-  final AuthService _auth = AuthService();
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String name = '';
   String email = '';
@@ -30,25 +28,25 @@ class _MyRegisterState extends State<MyRegister> {
 
       try {
         // Register the user with email and password
-        UserCredential userCredential =
-            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        final user = await AuthService.firebase().createUser(
           email: email,
           password: password,
         );
 
         // Get the user's unique ID
-        String userId = userCredential.user!.uid;
+        print(user);
 
         // Store the user's name in Firestore
-        await FirebaseFirestore.instance.collection('users').doc(userId).set({
+        await FirebaseFirestore.instance.collection('users').doc(user.id).set({
           'name': name,
+          'email': email,
         });
-
         // Registration successful, print the user data
         print('Registration successful:');
         print('Name: $name');
         print('Email: $email');
         print('Password: $password');
+        Navigator.pushNamedAndRemoveUntil(context, 'login', (_) => false);
       } catch (e) {
         // Handle registration errors
         print('Error registering user: $e');

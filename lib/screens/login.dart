@@ -1,3 +1,4 @@
+import 'package:eventhive/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 
 class MyLogin extends StatefulWidget {
@@ -8,22 +9,44 @@ class MyLogin extends StatefulWidget {
 }
 
 class _MyLoginState extends State<MyLogin> {
+  late final TextEditingController _email;
+  late final TextEditingController _password;
+
+  @override
+  void initState() {
+    _email = TextEditingController();
+    _password = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _email.dispose();
+    _password.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage('assets/signin.png'), fit: BoxFit.cover),
-      ),
+      // decoration: const BoxDecoration(
+      //   image: DecorationImage(
+      //       image: AssetImage('assets/Eventhive.png'), fit: BoxFit.cover),
+      // ),
       child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Stack(
+        backgroundColor: const Color(0xFF176B87),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Container(),
+            const SizedBox(
+              child: Image(
+                image: AssetImage('assets/Eventhive.png'),
+              ),
+            ),
             SingleChildScrollView(
               child: Container(
                 padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.33),
+                    top: MediaQuery.of(context).size.height * 0.001),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -32,6 +55,7 @@ class _MyLoginState extends State<MyLogin> {
                       child: Column(
                         children: [
                           TextField(
+                            controller: _email,
                             style: const TextStyle(color: Colors.black),
                             decoration: InputDecoration(
                                 fillColor: const Color(0xFFFFFFFF),
@@ -45,6 +69,7 @@ class _MyLoginState extends State<MyLogin> {
                             height: 30,
                           ),
                           TextField(
+                            controller: _password,
                             style: const TextStyle(),
                             obscureText: true,
                             decoration: InputDecoration(
@@ -56,17 +81,33 @@ class _MyLoginState extends State<MyLogin> {
                                 )),
                           ),
                           const SizedBox(
-                            height: 50,
+                            height: 20,
                           ),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               CircleAvatar(
                                 radius: 30,
-                                backgroundColor: const Color(0xFFDAFDBA),
+                                backgroundColor: const Color(0xFF64CCC5),
                                 child: IconButton(
                                     color: Colors.white,
-                                    onPressed: () {},
+                                    onPressed: () async {
+                                      final email = _email.text;
+                                      final password = _password.text;
+                                      try {
+                                        await AuthService.firebase().logIn(
+                                          email: email,
+                                          password: password,
+                                        );
+                                        Navigator.of(context)
+                                            .pushNamedAndRemoveUntil(
+                                          '/dashboard',
+                                          (route) => false,
+                                        );
+                                      } catch (e) {
+                                        print(e);
+                                      }
+                                    },
                                     icon: const Icon(
                                       Icons.arrow_forward,
                                     )),
@@ -74,7 +115,7 @@ class _MyLoginState extends State<MyLogin> {
                             ],
                           ),
                           const SizedBox(
-                            height: 40,
+                            height: 10,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -89,7 +130,7 @@ class _MyLoginState extends State<MyLogin> {
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                       decoration: TextDecoration.underline,
-                                      color: Color(0xFFDAFDBA),
+                                      color: Color(0xFFFFFFFF),
                                       fontSize: 18),
                                 ),
                               ),
@@ -99,7 +140,7 @@ class _MyLoginState extends State<MyLogin> {
                                     'Forgot Password',
                                     style: TextStyle(
                                       decoration: TextDecoration.underline,
-                                      color: Color(0xFFDAFDBA),
+                                      color: Color(0xFFFFFFFF),
                                       fontSize: 18,
                                     ),
                                   )),
