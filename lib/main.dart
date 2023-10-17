@@ -1,3 +1,4 @@
+import 'package:eventhive/screens/create_chat_room.dart';
 import 'package:eventhive/screens/navigation.dart';
 import 'package:eventhive/screens/splash.dart';
 import 'package:eventhive/screens/team_registration.dart';
@@ -26,6 +27,7 @@ void main() {
         'register': (context) => const MyRegister(),
         'login': (context) => const MyLogin(),
         '/dashboard': (context) => const Navigation(),
+        '/_createChatRoom': (context) => CreateChatRoomPage(),
         // '/team_registration': (context) => TeamRegistrationForm(),
       },
     ));

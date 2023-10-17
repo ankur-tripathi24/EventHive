@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eventhive/screens/dashboard.dart';
 import 'package:eventhive/screens/history.dart';
+import 'package:eventhive/screens/home_screen.dart';
 import 'package:eventhive/services/auth/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -23,9 +24,15 @@ class _NavigationState extends State<Navigation> {
           child: DashBoard(),
         );
       case 1:
-        return const Center(
-          child: const Text('Chat'),
+        // Navigate to the ChatRoom screen
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                HomeScreen(), // Replace ChatRoom with your actual widget
+          ),
         );
+        return Container(); // Return an empty container or null as you're navigating
       case 2:
         return const Center(
           child: History(),
