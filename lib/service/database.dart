@@ -126,4 +126,28 @@ class DatabaseService {
     }
     return [];
   }
+
+  Future<String> getNameFromEmail(String email) async {
+    try {
+      final CollectionReference collection =
+          FirebaseFirestore.instance.collection('users');
+
+      QuerySnapshot<Map<String, dynamic>> querySnapshot =
+          await collection.get() as QuerySnapshot<Map<String, dynamic>>;
+
+      List<String> data = [];
+
+      querySnapshot.docs
+          .forEach((QueryDocumentSnapshot<Map<String, dynamic>?> document) {
+        if (email == document.data()?['email']) {
+          data.add(document.data()?['name']);
+        }
+      });
+
+      return data[0];
+    } catch (e) {
+      print("Error fetching data: $e");
+      return ''; // Return an empty list or handle the error accordingly
+    }
+  }
 }

@@ -95,9 +95,7 @@ class _DashBoardState extends State<DashBoard> {
                             );
                     },
                     pagination: null,
-                    control: const SwiperControl(
-                      color: const Color(0xFF176B87),
-                    ),
+                    control: null,
                     onTap: ((index) {
                       print('Tapped on $index');
                     }),

@@ -33,6 +33,8 @@ class _MyRegisterState extends State<MyRegister> {
           password: password,
         );
 
+        await FirebaseAuth.instance.currentUser?.updateDisplayName(name);
+
         // Get the user's unique ID
         print(user);
 
@@ -40,6 +42,8 @@ class _MyRegisterState extends State<MyRegister> {
         await FirebaseFirestore.instance.collection('users').doc(user.id).set({
           'name': name,
           'email': email,
+          'id': user.id,
+          'status': 'Unavailable'
         });
         // Registration successful, print the user data
         print('Registration successful:');

@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eventhive/screens/dashboard.dart';
 import 'package:eventhive/screens/history.dart';
+import 'package:eventhive/screens/profile.dart';
+import 'package:eventhive/screens/search.dart';
 import 'package:eventhive/services/auth/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -24,15 +26,15 @@ class _NavigationState extends State<Navigation> {
         );
       case 1:
         return const Center(
-          child: const Text('Chat'),
+          child: Search(),
         );
       case 2:
         return const Center(
           child: History(),
         );
       case 3:
-        return const Center(
-          child: Text('Settings'),
+        return Center(
+          child: ProfilePage(),
         );
       default:
         return const Center(
